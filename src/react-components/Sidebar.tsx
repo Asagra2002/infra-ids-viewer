@@ -148,6 +148,7 @@ export function Sidebar() {
             <bim-label style={{ color: "#fff" }} icon="material-symbols:apartment">Projects</bim-label>
           </li>
         </Router.Link>
+        {/* Site Plan, LCA Evaluation, IDS Validation: use tools inside ProjectDetails viewer instead
         <Router.Link to="/sijaintikartta">
           <li>
             <bim-label style={{ color: "#fff" }} icon="material-symbols:map">Site Plan</bim-label>
@@ -163,6 +164,7 @@ export function Sidebar() {
               <bim-label style={{ color: "#fff" }} icon="material-symbols:verified">IDS Validation</bim-label>
             </li>
           </Router.Link>
+        */}
           <Router.Link to="/about">
             <li>
               <bim-label style={{ color: "#fff" }} icon="material-symbols:info">About</bim-label>
