@@ -1,0 +1,3188 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ids:ids xmlns:ids="http://standards.buildingsmart.org/IDS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS http://standards.buildingsmart.org/IDS/1.0/ids.xsd">
+  <ids:info>
+    <ids:title>Ydintietojen tarkistus</ids:title>
+    <ids:copyright>Tomi Henttinen / RAVA3.5 hanke</ids:copyright>
+    <ids:description>Suunnitelmamalliasetuksen LIITE 1 mukaisten IFC-ominaisuuskenttien tietovaatimusten tarkistaminen rakentamislupaa varten. Tämä sääntö tarkistaa, että IFC malli sisältää vaadittavat tietokentät ja että niiden tietomuoto on oikea. Sääntö ei tarkista tietojen oikeellisuutta.</ids:description>
+    <ids:date>2025-11-30</ids:date>
+  </ids:info>
+  <ids:specifications>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuksen tietomallin laji" description="Tieto, onko malli lupavaiheen suunnitelmamalli vai toteumamalli.&#10;Koodisto: Rakennuksen tietomallin laji">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>TietomallinLaji</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Suunnitelmamalli" />
+              <xs:enumeration value="Toteumamalli" />
+              <xs:enumeration value="Planmodell" />
+              <xs:enumeration value="Utfallsmodell" />
+              <xs:enumeration value="Planning model" />
+              <xs:enumeration value="As-built model" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Suunnittelijan nimi" description="Vastaavan rakennussuunnittelijan nimi.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>VastaavaSuunnittelija</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennussuunnittelutoimiston nimi" description="Rakennussuunnittelutoimiston nimi.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Suunnittelutoimisto</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuspaikan nimi" description="Rakennuspaikan nimi. Rakennuspaikalla ja rakennuskohteella voi olla sama nimi.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>KiinteistönNimi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuspaikan kiinteistötunnus" description="Kiinteistörekisteriin merkityn rekisteriyksikön yksilöivä tunnus.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Kiinteistötunnus</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuspaikan määräalatunnus" description="Kiinteistörekisteriin merkityn määräalan tai erillisenä luovutetun yhteisalueosuuden yksilöivä tunnus.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Määräala</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuspaikan osoite" description="Rakennuspaikan katuosoite. Rakennuspaikalla ja rakennuskohteella voi olla sama osoite.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Katuosoite</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuspaikan postinumero" description="Rakennuspaikan postinumero. Rakennuspaikalla ja rakennuskohteella voi olla sama postinumero.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Postinumero</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuspaikan postitoimipaikka" description="Rakennuspaikan postitoimipaikka. Rakennuspaikalla ja rakennuskohteella voi olla sama postitoimipaikka.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Postitoimipaikka</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuspaikan pysyvä kaavatunnus" description="Rakennuspaikan kaavatunnus.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Kaavatunnus</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuspaikan kaavatilanne" description="Rakennushankkeelle rekisteröitävä tieto rakennuksen sijoittumisesta kaava-alueelle tai sen ulkopuolelle rakentamisluvan hakuhetkellä.&#10;Koodisto: Kaavatilanne">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Kaavatilanne</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Asemakaava" />
+              <xs:enumeration value="Rakennuskaava" />
+              <xs:enumeration value="Rantakaava" />
+              <xs:enumeration value="Yleiskaava" />
+              <xs:enumeration value="Ei kaavaa" />
+              <xs:enumeration value="Maakuntakaava" />
+              <xs:enumeration value="Oikeusvaikutteinen yleiskaava" />
+              <xs:enumeration value="Oikeusvaikutukseton yleiskaava" />
+              <xs:enumeration value="Ranta-asemakaava" />
+              <xs:enumeration value="Stadsplan" />
+              <xs:enumeration value="Byggnadsplan" />
+              <xs:enumeration value="Strandplan" />
+              <xs:enumeration value="Generalplan" />
+              <xs:enumeration value="Ingen plan" />
+              <xs:enumeration value="Landskapsplan" />
+              <xs:enumeration value="Generalplan med rättsverkningar" />
+              <xs:enumeration value="Generalplan utan rättsverkningar" />
+              <xs:enumeration value="Stranddetaljplan" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuspaikan hallinta- tai omistusmuoto" description="Rakennuspaikan omistus- tai hallintasuhde. Tieto ei sisälly asetuksen mukaisiin ydintietoihin, mutta rakennusvalvonnan tulee toimittaa se DVV:lle.&#10;Koodisto: Rakennuspaikan hallintaperuste">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Hallintaperuste</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Oma" />
+              <xs:enumeration value="Vuokrattu" />
+              <xs:enumeration value="Muu oikeus" />
+              <xs:enumeration value="Egen" />
+              <xs:enumeration value="Arrenderad" />
+              <xs:enumeration value="Annan rättighet" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakentamistoimenpiteen laji" description="Tieto minkä tyyppisestä rakentamistoimenpiteestä on kyse.&#10;Koodisto: Rakentamistoimenpide">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Rakentamistoimenpide</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Uusi rakennus tai rakennelma" />
+              <xs:enumeration value="Laajentaminen" />
+              <xs:enumeration value="Uudelleen rakentamiseen verrattava muutostyö" />
+              <xs:enumeration value="Muu muutostyö" />
+              <xs:enumeration value="Purkaminen" />
+              <xs:enumeration value="Rakennuksen osittainen purkaminen" />
+              <xs:enumeration value="Kaupunkikuvatoimenpide" />
+              <xs:enumeration value="Maisemaa muuttava toimenpide" />
+              <xs:enumeration value="Rakennuksen tai rakennelman päivitys" />
+              <xs:enumeration value="Ny byggnad eller konstruktion" />
+              <xs:enumeration value="Utvidgning" />
+              <xs:enumeration value="Ändringsarbete som är jämförbar med nybyggande" />
+              <xs:enumeration value="Annat ändringsarbete" />
+              <xs:enumeration value="Rivning" />
+              <xs:enumeration value="Delvis rivning av en byggnad" />
+              <xs:enumeration value="Stadbildsåtgärd" />
+              <xs:enumeration value="Åtgärd som ändrar landskapet" />
+              <xs:enumeration value="Uppdatering av byggnad eller konstruktion" />
+              <xs:enumeration value="New building or structure" />
+              <xs:enumeration value="Expansion" />
+              <xs:enumeration value="Alteration work comparable to rebuilding" />
+              <xs:enumeration value="Other alteration work" />
+              <xs:enumeration value="Demolition" />
+              <xs:enumeration value="Partial demolition of building" />
+              <xs:enumeration value="Cityscape action" />
+              <xs:enumeration value="Landscape-altering action" />
+              <xs:enumeration value="Update of building or structure" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennustoimenpide on perusparannus" description="Mikäli kyseessä on rakennuksen perusparannustoimenpide, arvo on TRUE. Mikäli rakennustoimenpide on uudisrakentaminen, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Perusparannus</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Muutosala" description="Pinta-alatieto (m2) rakennuskohteen alueesta, johon haettavan luvan mukainen muutos kohdistuu.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Muutosala</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Liiketaloudellinen rakentaminen (työ teetetään ulkopuolisella)" description="Liiketaloudellisella rakentamisella tarkoitetaan, että suurin osa rakentamistyöstä teetetään ulkopuolisella rakentajalla (TRUE). Mikäli suurin osa rakentamistyöstä tehdään omatoimisesti, kyse ei ole liiketoimisesta rakentamisesta (FALSE).">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LiiketaloudellinenRakentaminen</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuskohteen nimi" description="Rakennuskohteen nimi. Rakennuskohteen nimi voi olla eri kuin rakennuspaikan nimi.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Nimi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuskohteen katuosoite" description="Rakennuskohteen katuosoite. Rakennuskohteella ja rakennuspaikalla voi olla eri osoite.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Katuosoite</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuskohteen postinumero" description="Rakennuskohteen postinumero. Rakennuskohteella ja rakennuspaikalla voi olla eri postinumero.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Postinumero</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuskohteen postitoimipaikka" description="Rakennuskohteen postitoimipaikka.  Rakennuskohteella ja rakennuspaikalla voi olla eri postitoimipaikka.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Postitoimipaikka</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuskohde on väliaikainen" description="Mikäli rakennuskohde on väliaikainen, arvo on TRUE. Mikäli kohde on pysyvä tai kohteen tilaa ei tiedetä, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Väliaikainen</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuskohteen omistajalaji" description="Tieto siitä, minkä tyyppinen omistaja kohteella on.&#10;Koodisto: Omistajalaji">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Omistajalaji</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Yksityinen maatalousyrittäjä" />
+              <xs:enumeration value="Muu yksityinen henkilö tai perikunta" />
+              <xs:enumeration value="Asunto oy tai asunto-osuuskunta" />
+              <xs:enumeration value="Kiinteistö oy" />
+              <xs:enumeration value="Yksityinen yritys" />
+              <xs:enumeration value="Valtio- tai kuntaenemmistöinen yritys" />
+              <xs:enumeration value="Kunnan liikelaitos" />
+              <xs:enumeration value="Valtion liikelaitos" />
+              <xs:enumeration value="Pankki- tai vakuutuslaitos" />
+              <xs:enumeration value="Kunta tai kuntainliitto" />
+              <xs:enumeration value="Valtio" />
+              <xs:enumeration value="Sosiaaliturvarahasto" />
+              <xs:enumeration value="Uskonnollinen yhteisö, säätiö, puolue tai yhdistys" />
+              <xs:enumeration value="Muu" />
+              <xs:enumeration value="Privat jordbruksföretagare" />
+              <xs:enumeration value="Annan privatperson eller dödsbo" />
+              <xs:enumeration value="Bostadsaktiebolag eller bostadsandelslag" />
+              <xs:enumeration value="Fastighetsaktiebolag" />
+              <xs:enumeration value="Privat företag" />
+              <xs:enumeration value="Företag med statlig eller kommunal majoritet" />
+              <xs:enumeration value="Kommunens affärsverk" />
+              <xs:enumeration value="Statens affärsverk" />
+              <xs:enumeration value="Bank eller försäkringsanstalt" />
+              <xs:enumeration value="Kommun eller samkommun" />
+              <xs:enumeration value="Staten" />
+              <xs:enumeration value="Socialskyddsfond" />
+              <xs:enumeration value="Religiöst samfund, stiftelse, parti eller förening" />
+              <xs:enumeration value="Annat" />
+              <xs:enumeration value="Private agricultural entrepreneur" />
+              <xs:enumeration value="Other private person or estate" />
+              <xs:enumeration value="Housing company or housing cooperative" />
+              <xs:enumeration value="Real estate company" />
+              <xs:enumeration value="Private company" />
+              <xs:enumeration value="Company where state or municipality is majority shareholder" />
+              <xs:enumeration value="Municipal utility" />
+              <xs:enumeration value="State enterprise" />
+              <xs:enumeration value="Banking or insurance institution" />
+              <xs:enumeration value="Municipality or federation of municipalities" />
+              <xs:enumeration value="State" />
+              <xs:enumeration value="Social security fund" />
+              <xs:enumeration value="Religious community, foundation, party or association" />
+              <xs:enumeration value="Other" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Verkostoliittymän laji - Tietoliikennekaapeli" description="Mikäli rakennuskohde on liitetty tietoliikennejärjestelmään, arvo on TRUE. Mikäli kohdetta ei ole liitetty ko. järjestelmään tai liittymä ei ole tiedossa, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>VerkostoliittymäTietoliikennekaapeli</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Verkostoliittymän laji - Talousvesi" description="Mikäli rakennuskohde on liitetty talousvesijärjestelmään, arvo on TRUE. Mikäli kohdetta ei ole liitetty ko. järjestelmään tai liittymä ei ole tiedossa, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>VerkostoliittymäTalousvesi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Verkostoliittymän laji - Jätevesi" description="Mikäli rakennuskohde on liitetty jätevesijärjestelmään, arvo on TRUE. Mikäli kohdetta ei ole liitetty ko. järjestelmään tai liittymä ei ole tiedossa, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>VerkostoliittymäJätevesi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Verkostoliittymän laji - Sähkö" description="Mikäli rakennuskohde on liitetty sähköjärjestelmään, arvo on TRUE. Mikäli kohdetta ei ole liitetty ko. järjestelmään tai liittymä ei ole tiedossa, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>VerkostoliittymäSähkö</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Verkostoliittymän laji - Kaukolämpö" description="Mikäli rakennuskohde on liitetty kaukolämpöjärjestelmään, arvo on TRUE. Mikäli kohdetta ei ole liitetty ko. järjestelmään tai liittymä ei ole tiedossa, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>VerkostoliittymäKaukolämpö</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Verkostoliittymän laji - Kaasu" description="Mikäli rakennuskohde on liitetty kaasujärjestelmään, arvo on TRUE. Mikäli kohdetta ei ole liitetty ko. järjestelmään tai liittymä ei ole tiedossa, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>VerkostoliittymäKaasu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Verkostoliittymän laji - Hulevesi" description="Mikäli rakennuskohde on liitetty hulevesijärjestelmään, arvo on TRUE. Mikäli kohdetta ei ole liitetty ko. järjestelmään tai liittymä ei ole tiedossa, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>VerkostoliittymäHulevesi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Verkostoliittymän laji - Kaukojäähdytys" description="Mikäli rakennuskohde on liitetty kaukojäähdytysjärjestelmään, arvo on TRUE. Mikäli kohdetta ei ole liitetty ko. järjestelmään tai liittymä ei ole tiedossa, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>VerkostoliittymäKaukojäähdytys</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Verkostoliittymän laji - Sammutusvesi" description="Mikäli rakennuskohde on liitetty sammutusvesijärjestelmään, arvo on TRUE. Mikäli kohdetta ei ole liitetty ko. järjestelmään tai liittymä ei ole tiedossa, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>VerkostoliittymäSammutusvesi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Polkupyöräpaikkojen määrä" description="Rakennuspaikan ja kohteen polkupyöräpaikkojen yhteenlaskettu lukumäärä luvan mukaisen toimenpiteen valmistuttua.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>PolkupyöräpaikkojenMäärä</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Putkitus autojen latauspistettä varten" description="Mikäli sähköautojen latauspisteitä varten on tehty valmiiksi putkitus, mutta latauspisteitä ei ole vielä asennettu, arvo on TRUE. Mikäli latauspisteet on jo asennettu eikä tehty putkitus mahdollista lisäpisteiden asentamista, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LatauspisteidenPutkitus</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Muut johtoreitit autojen latauspistettä varten" description="Mikäli sähköautojen latauspisteitä varten on tehty muu johtoreitti kuin putkitus, mutta latauspisteitä ei ole vielä asennettu, arvo on TRUE. Mikäli latauspisteet on jo asennettu eikä tehty johtoreitti mahdollista lisäpisteiden asentamista, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LatauspisteidenMuutJohtoreitit</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Esikaapelointi autojen latauspistettä varten" description="Mikäli sähköautojen latauspisteitä varten on tehty esikaapelointi, mutta latauspisteitä ei ole vielä asennettu, vastataan TRUE. Mikäli latauspisteet on jo asennettu eikä esikaapelointi mahdollista lisäpisteiden asentamista, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LatauspisteidenEsikaapelointi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Autojen latauspisteiden määrä" description="Rakennuspaikan ja kohteen yhteenlaskettu sähköautojen latauspisteiden lukumäärä luvan mukaisen toimenpiteen valmistuttua.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LatauspisteidenMäärä</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Pysyvä rakennustunnus" description="Väestötietojärjestelmään tallennettu pysyvä rakennustunnus. Lupavaiheessa tieto annetaan vain, mikäli kyse on olemassa olevan kohteen muutostoimenpiteestä.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Rakennustunnus</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuksen suunniteltu käyttäjämäärä" description="Rakennuksen käyttäjien lukumäärä, joka rakennusta suunniteltaessa on määritelty.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>SuunniteltuKäyttäjämäärä</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuksen tavoitteellinen käyttöikä" description="Rakennuksen suunniteltu käyttöiän tavoite vuosina.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>TavoitteellinenKäyttöikä</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Käyttötarkoituksen laji" description="Rakennuskohteen pääasiallinen käyttötarkoitus.&#10;Koodisto: Rakennusluokitus 2018">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>PääasiallinenKäyttötarkoitus</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Asuinrakennukset" />
+              <xs:enumeration value="Pientalot" />
+              <xs:enumeration value="Omakotitalot" />
+              <xs:enumeration value="Paritalot" />
+              <xs:enumeration value="Rivitalot" />
+              <xs:enumeration value="Kerrostalot" />
+              <xs:enumeration value="Pienkerrostalot" />
+              <xs:enumeration value="Asuinkerrostalot" />
+              <xs:enumeration value="Asuntolarakennukset" />
+              <xs:enumeration value="Asuntolarakennukset" />
+              <xs:enumeration value="Erityisryhmien asuinrakennukset" />
+              <xs:enumeration value="Erityisryhmien asuinrakennukset" />
+              <xs:enumeration value="Vapaa-ajan asuinrakennukset" />
+              <xs:enumeration value="Vapaa-ajan asuinrakennukset" />
+              <xs:enumeration value="Ympärivuotiseen käyttöön soveltuvat vapaa-ajan asuinrakennukset" />
+              <xs:enumeration value="Osavuotiseen käyttöön soveltuvat vapaa-ajan asuinrakennukset" />
+              <xs:enumeration value="Liikerakennukset" />
+              <xs:enumeration value="Myymälärakennukset" />
+              <xs:enumeration value="Tukku- ja vähittäiskaupan myymälähallit" />
+              <xs:enumeration value="Kauppakeskukset ja liike- ja tavaratalot" />
+              <xs:enumeration value="Muut myymälärakennukset" />
+              <xs:enumeration value="Majoitusliikerakennukset" />
+              <xs:enumeration value="Hotellit" />
+              <xs:enumeration value="Motellit, hostellit ja vastaavat majoitusliikerakennukset" />
+              <xs:enumeration value="Loma-, lepo- ja virkistyskodit" />
+              <xs:enumeration value="Muut majoitusliikerakennukset" />
+              <xs:enumeration value="Ravintolarakennukset ja vastaavat liikerakennukset" />
+              <xs:enumeration value="Ravintolarakennukset ja vastaavat liikerakennukset" />
+              <xs:enumeration value="Toimistorakennukset" />
+              <xs:enumeration value="Toimistorakennukset" />
+              <xs:enumeration value="Toimistorakennukset" />
+              <xs:enumeration value="Liikenteen rakennukset" />
+              <xs:enumeration value="Liikenne- ja kuljetusalan rakennukset" />
+              <xs:enumeration value="Asemarakennukset ja terminaalit" />
+              <xs:enumeration value="Ammattiliikenteen kaluston suojarakennukset" />
+              <xs:enumeration value="Ammattiliikenteen kaluston huoltorakennukset" />
+              <xs:enumeration value="Pysäköintitalot ja -hallit" />
+              <xs:enumeration value="Kulkuneuvojen katokset" />
+              <xs:enumeration value="Tieto- ja viestintätekniikan rakennukset" />
+              <xs:enumeration value="Datakeskukset ja laitetilat" />
+              <xs:enumeration value="Tietoliikenteen rakennukset" />
+              <xs:enumeration value="Muut liikenteen rakennukset" />
+              <xs:enumeration value="Muut liikenteen rakennukset" />
+              <xs:enumeration value="Hoitoalan rakennukset" />
+              <xs:enumeration value="Terveydenhuoltorakennukset" />
+              <xs:enumeration value="Terveys- ja hyvinvointikeskukset" />
+              <xs:enumeration value="Keskussairaalat" />
+              <xs:enumeration value="Erikoissairaalat ja laboratoriorakennukset" />
+              <xs:enumeration value="Muut sairaalat" />
+              <xs:enumeration value="Kuntoutuslaitokset" />
+              <xs:enumeration value="Eläintenhoitorakennukset" />
+              <xs:enumeration value="Muut terveydenhuoltorakennukset" />
+              <xs:enumeration value="Sosiaalipalvelurakennukset" />
+              <xs:enumeration value="Laitospalvelujen rakennukset" />
+              <xs:enumeration value="Avopalvelujen rakennukset" />
+              <xs:enumeration value="Vankilarakennukset" />
+              <xs:enumeration value="Vankilarakennukset" />
+              <xs:enumeration value="Kokoontumisrakennukset" />
+              <xs:enumeration value="Kulttuurirakennukset" />
+              <xs:enumeration value="Teatterit, musiikki- ja kongressitalot" />
+              <xs:enumeration value="Elokuvateatterit" />
+              <xs:enumeration value="Kirjastot ja arkistot" />
+              <xs:enumeration value="Museot ja taidegalleriat" />
+              <xs:enumeration value="Näyttely- ja messuhallit" />
+              <xs:enumeration value="Seura- ja kerhorakennukset" />
+              <xs:enumeration value="Seura- ja kerhorakennukset" />
+              <xs:enumeration value="Uskonnollisten yhteisöjen rakennukset" />
+              <xs:enumeration value="Uskonnonharjoittamisrakennukset" />
+              <xs:enumeration value="Seurakuntatalot" />
+              <xs:enumeration value="Muut uskonnollisten yhteisöjen rakennukset" />
+              <xs:enumeration value="Urheilu- ja liikuntarakennukset" />
+              <xs:enumeration value="Jäähallit" />
+              <xs:enumeration value="Uimahallit" />
+              <xs:enumeration value="Monitoimihallit" />
+              <xs:enumeration value="Urheilu- ja palloiluhallit" />
+              <xs:enumeration value="Stadion- ja katsomorakennukset" />
+              <xs:enumeration value="Muut urheilu- ja liikuntarakennukset" />
+              <xs:enumeration value="Muut kokoontumisrakennukset" />
+              <xs:enumeration value="Muut kokoontumisrakennukset" />
+              <xs:enumeration value="Opetusrakennukset" />
+              <xs:enumeration value="Varhaiskasvatuksen rakennukset" />
+              <xs:enumeration value="Lasten päiväkodit" />
+              <xs:enumeration value="Yleissivistävien oppilaitosten rakennukset" />
+              <xs:enumeration value="Yleissivistävien oppilaitosten rakennukset" />
+              <xs:enumeration value="Ammatillisten oppilaitosten rakennukset" />
+              <xs:enumeration value="Ammatillisten oppilaitosten rakennukset" />
+              <xs:enumeration value="Korkeakoulu- ja tutkimuslaitosrakennukset" />
+              <xs:enumeration value="Korkeakoulurakennukset" />
+              <xs:enumeration value="Tutkimuslaitosrakennukset" />
+              <xs:enumeration value="Muut opetusrakennukset" />
+              <xs:enumeration value="Vapaan sivistystyön opetusrakennukset" />
+              <xs:enumeration value="Järjestöjen, liittojen, työnantajien ja vastaavien opetusrakennukset" />
+              <xs:enumeration value="Teollisuuden ja kaivannaistoiminnan rakennukset" />
+              <xs:enumeration value="Teollisuuden tuotantorakennukset" />
+              <xs:enumeration value="Yleiskäyttöiset teollisuushallit" />
+              <xs:enumeration value="Raskaan teollisuuden tehdasrakennukset" />
+              <xs:enumeration value="Elintarviketeollisuuden tuotantorakennukset" />
+              <xs:enumeration value="Muut teollisuuden tuotantorakennukset" />
+              <xs:enumeration value="Teollisuus- ja pienteollisuustalot" />
+              <xs:enumeration value="Teollisuus- ja pienteollisuustalot" />
+              <xs:enumeration value="Kaivannaistoiminnan rakennukset" />
+              <xs:enumeration value="Metallimalmien käsittelyrakennukset" />
+              <xs:enumeration value="Muut kaivannaistoiminnan rakennukset" />
+              <xs:enumeration value="Energiahuoltorakennukset" />
+              <xs:enumeration value="Energiantuotantorakennukset" />
+              <xs:enumeration value="Sähköenergian tuotantorakennukset" />
+              <xs:enumeration value="Lämpö- ja kylmäenergian tuotantorakennukset" />
+              <xs:enumeration value="Muut energiahuoltorakennukset" />
+              <xs:enumeration value="Energiansiirtorakennukset" />
+              <xs:enumeration value="Energianvarastointirakennukset" />
+              <xs:enumeration value="Yhdyskuntatekniikan rakennukset" />
+              <xs:enumeration value="Vesihuollon rakennukset" />
+              <xs:enumeration value="Vedenotto-, vedenpuhdistus- ja vedenjakelurakennukset" />
+              <xs:enumeration value="Jätehuollon rakennukset" />
+              <xs:enumeration value="Jätteenkeruu-, jätteenkäsittely- ja jätteenvarastointirakennukset" />
+              <xs:enumeration value="Materiaalien kierrätysrakennukset" />
+              <xs:enumeration value="Materiaalien kierrätysrakennukset" />
+              <xs:enumeration value="Varastorakennukset" />
+              <xs:enumeration value="Varastorakennukset" />
+              <xs:enumeration value="Lämmittämättömät varastot" />
+              <xs:enumeration value="Lämpimät varastot" />
+              <xs:enumeration value="Kylmä- ja pakastevarastot" />
+              <xs:enumeration value="Muut olosuhteiltaan säädellyt varastot" />
+              <xs:enumeration value="Logistiikkakeskukset ja muut monikäyttöiset varastorakennukset" />
+              <xs:enumeration value="Varastokatokset" />
+              <xs:enumeration value="Pelastustoimen rakennukset" />
+              <xs:enumeration value="Pelastustoimen rakennukset" />
+              <xs:enumeration value="Paloasemat" />
+              <xs:enumeration value="Väestönsuojat" />
+              <xs:enumeration value="Muut pelastustoimen rakennukset" />
+              <xs:enumeration value="Maatalousrakennukset ja eläinsuojat" />
+              <xs:enumeration value="Kotieläinrakennukset" />
+              <xs:enumeration value="Lypsykarjarakennukset" />
+              <xs:enumeration value="Lihakarjarakennukset" />
+              <xs:enumeration value="Sikalat" />
+              <xs:enumeration value="Lampolat ja vuohinavetat" />
+              <xs:enumeration value="Hevostallit" />
+              <xs:enumeration value="Siipikarjarakennukset" />
+              <xs:enumeration value="Turkiseläinrakennukset" />
+              <xs:enumeration value="Muut eläinsuojat" />
+              <xs:enumeration value="Muut maatalousrakennukset" />
+              <xs:enumeration value="Kasvihuoneet" />
+              <xs:enumeration value="Viljankuivaamot ja viljansäilytysrakennukset" />
+              <xs:enumeration value="Maatalouden varastorakennukset" />
+              <xs:enumeration value="Lantalat" />
+              <xs:enumeration value="Muut maa-, metsä- ja kalatalouden rakennukset" />
+              <xs:enumeration value="Muut rakennukset" />
+              <xs:enumeration value="Muut rakennukset" />
+              <xs:enumeration value="Saunarakennukset" />
+              <xs:enumeration value="Talousrakennukset" />
+              <xs:enumeration value="Majat ja tuvat" />
+              <xs:enumeration value="Muualla luokittelemattomat rakennukset" />
+              <xs:enumeration value="Bostadsbyggnader" />
+              <xs:enumeration value="Småhus" />
+              <xs:enumeration value="Egnahemshus" />
+              <xs:enumeration value="Parhus" />
+              <xs:enumeration value="Radhus" />
+              <xs:enumeration value="Flervåningshus" />
+              <xs:enumeration value="Låghus" />
+              <xs:enumeration value="Flervåningsbostadshus" />
+              <xs:enumeration value="Kollektivbostadsbyggnader" />
+              <xs:enumeration value="Kollektivbostadsbyggnader" />
+              <xs:enumeration value="Bostadsbyggnader för speciella grupper" />
+              <xs:enumeration value="Bostadsbyggnader för speciella grupper" />
+              <xs:enumeration value="Fritidsbostadshus" />
+              <xs:enumeration value="Fritidsbostadshus" />
+              <xs:enumeration value="Fritidsbostadshus som passar för användning året runt" />
+              <xs:enumeration value="Fritidsbostadshus som passar för användning en del av året" />
+              <xs:enumeration value="Affärsbyggnader" />
+              <xs:enumeration value="Butiksbyggnader" />
+              <xs:enumeration value="Butikshallar för parti- och detaljhandel" />
+              <xs:enumeration value="Handelscentra, affärs- och varuhus" />
+              <xs:enumeration value="Övriga butiksbyggnader" />
+              <xs:enumeration value="Byggnader för inkvarteringsanläggningar" />
+              <xs:enumeration value="Hotell" />
+              <xs:enumeration value="Motell, vandrarhem och motsvarande byggnader för inkvarteringsanläggningar" />
+              <xs:enumeration value="Semester-, vilo- och rekreationshem" />
+              <xs:enumeration value="Övriga byggnader för inkvarteringsanläggningar" />
+              <xs:enumeration value="Restaurangbyggnader och motsvarande affärsbyggnader" />
+              <xs:enumeration value="Restaurangbyggnader och motsvarande affärsbyggnader" />
+              <xs:enumeration value="Kontorsbyggnader" />
+              <xs:enumeration value="Kontorsbyggnader" />
+              <xs:enumeration value="Kontorsbyggnader" />
+              <xs:enumeration value="Trafikbyggnader" />
+              <xs:enumeration value="Byggnader för trafik- och transportbranschen" />
+              <xs:enumeration value="Stationsbyggnader och terminaler" />
+              <xs:enumeration value="Garagebyggnader för fordon i yrkestrafik" />
+              <xs:enumeration value="Servicebyggnader för fordon i yrkestrafik" />
+              <xs:enumeration value="Parkeringshus och -hallar" />
+              <xs:enumeration value="Parkeringstak för fortskaffningsmedel" />
+              <xs:enumeration value="Byggnader för informations- och kommunikationsteknik" />
+              <xs:enumeration value="Datacentraler och serverhallar" />
+              <xs:enumeration value="Telekommunikationsbyggnader" />
+              <xs:enumeration value="Övriga trafikbyggnader" />
+              <xs:enumeration value="Övriga trafikbyggnader" />
+              <xs:enumeration value="Vårdbyggnader" />
+              <xs:enumeration value="Hälsovårdsbyggnader" />
+              <xs:enumeration value="Centraler för hälsa och välbefinnande" />
+              <xs:enumeration value="Centralsjukhus" />
+              <xs:enumeration value="Specialsjukhus och laboratoriebyggnader" />
+              <xs:enumeration value="Övriga sjukhus" />
+              <xs:enumeration value="Rehabiliteringsinrättningar" />
+              <xs:enumeration value="Byggnader för djurvård" />
+              <xs:enumeration value="Övriga hälsovårdsbyggnader" />
+              <xs:enumeration value="Byggnader för socialtjänster" />
+              <xs:enumeration value="Byggnader för sluten vård" />
+              <xs:enumeration value="Byggnader för öppen vård" />
+              <xs:enumeration value="Fängelsebyggnader" />
+              <xs:enumeration value="Fängelsebyggnader" />
+              <xs:enumeration value="Byggnader för samlingslokaler" />
+              <xs:enumeration value="Kulturbyggnader" />
+              <xs:enumeration value="Teatrar, musik- och kongresshus" />
+              <xs:enumeration value="Biografer" />
+              <xs:enumeration value="Bibliotek och arkiv" />
+              <xs:enumeration value="Museer och konstgallerier" />
+              <xs:enumeration value="Utställnings- och mässhallar" />
+              <xs:enumeration value="Förenings- och klubblokalsbyggnader" />
+              <xs:enumeration value="Förenings- och klubblokalsbyggnader" />
+              <xs:enumeration value="Byggnader för religiösa samfund" />
+              <xs:enumeration value="Byggnader för religionsutövning" />
+              <xs:enumeration value="Församlingshus" />
+              <xs:enumeration value="Övriga byggnader för religiösa samfund" />
+              <xs:enumeration value="Idrotts- och motionsbyggnader" />
+              <xs:enumeration value="Ishallar" />
+              <xs:enumeration value="Simhallar" />
+              <xs:enumeration value="Allaktivitetshallar" />
+              <xs:enumeration value="Idrotts- och bollhallar" />
+              <xs:enumeration value="Stadion- och läktarbyggnader" />
+              <xs:enumeration value="Övriga idrotts- och motionsbyggnader" />
+              <xs:enumeration value="Övriga byggnader för samlingslokaler" />
+              <xs:enumeration value="Övriga byggnader för samlingslokaler" />
+              <xs:enumeration value="Undervisningsbyggnader" />
+              <xs:enumeration value="Byggnader för småbarnspedagogik" />
+              <xs:enumeration value="Daghem" />
+              <xs:enumeration value="Byggnader för allmänbildande läroanstalter" />
+              <xs:enumeration value="Byggnader för allmänbildande läroanstalter" />
+              <xs:enumeration value="Byggnader för yrkesläroanstalter" />
+              <xs:enumeration value="Byggnader för yrkesläroanstalter" />
+              <xs:enumeration value="Högskole- och forskningsanstaltsbyggnader" />
+              <xs:enumeration value="Högskolebyggnader" />
+              <xs:enumeration value="Forskningsanstaltsbyggnader" />
+              <xs:enumeration value="Övriga undervisningsbyggnader" />
+              <xs:enumeration value="Undervisningsbyggnader inom det fria bildningsarbetet" />
+              <xs:enumeration value="Organisationers, förbunds, arbetsgivares och motsvarande undervisningsbyggnader" />
+              <xs:enumeration value="Byggnader inom industrin och gruvindustrin" />
+              <xs:enumeration value="Produktionsbyggnader inom industrin" />
+              <xs:enumeration value="Allmänna industrihallar" />
+              <xs:enumeration value="Fabriksbyggnader inom den tunga industrin" />
+              <xs:enumeration value="Produktionsbyggnader inom livsmedelsindustrin" />
+              <xs:enumeration value="Övriga produktionsbyggnader inom industrin" />
+              <xs:enumeration value="Industri- och småindustrihus" />
+              <xs:enumeration value="Industri- och småindustrihus" />
+              <xs:enumeration value="Byggnader inom gruvindustrin" />
+              <xs:enumeration value="Byggnader för hantering av metallmalm" />
+              <xs:enumeration value="Övriga byggnader inom gruvindustrin" />
+              <xs:enumeration value="Byggnader för energiförsörjning" />
+              <xs:enumeration value="Byggnader för energiproduktion" />
+              <xs:enumeration value="Byggnader för produktion av elenergi" />
+              <xs:enumeration value="Byggnader för produktion av värme- och kylenergi" />
+              <xs:enumeration value="Övriga byggnader för energiförsörjning" />
+              <xs:enumeration value="Byggnader för energiöverföring" />
+              <xs:enumeration value="Byggnader för lagring av energi" />
+              <xs:enumeration value="Byggnader för samhällsteknik" />
+              <xs:enumeration value="Byggnader för vattenförsörjning" />
+              <xs:enumeration value="Byggnader för vattentäkt, vattenrening och vattendistribution" />
+              <xs:enumeration value="Byggnader för avfallshantering" />
+              <xs:enumeration value="Byggnader för insamling, hantering och deponering av avfall" />
+              <xs:enumeration value="Byggnader för materialåtervinning" />
+              <xs:enumeration value="Byggnader för materialåtervinning" />
+              <xs:enumeration value="Lagerbyggnader" />
+              <xs:enumeration value="Lagerbyggnader" />
+              <xs:enumeration value="Ouppvärmda lager" />
+              <xs:enumeration value="Varma lager" />
+              <xs:enumeration value="Kyl- och fryslager" />
+              <xs:enumeration value="Övriga lager vars förhållanden är reglerade" />
+              <xs:enumeration value="Logistikcentraler och andra mångsidiga lagerbyggnader" />
+              <xs:enumeration value="Lagertak" />
+              <xs:enumeration value="Byggnader för räddningsväsendet" />
+              <xs:enumeration value="Byggnader för räddningsväsendet" />
+              <xs:enumeration value="Brandstationer" />
+              <xs:enumeration value="Skyddsrum" />
+              <xs:enumeration value="Övriga byggnader för räddningsväsendet" />
+              <xs:enumeration value="Lantbruksbyggnader och djurstall" />
+              <xs:enumeration value="Husdjursbyggnader" />
+              <xs:enumeration value="Byggnader för mjölkboskap" />
+              <xs:enumeration value="Byggnader för köttboskap" />
+              <xs:enumeration value="Svinhus" />
+              <xs:enumeration value="Fårhus och getstall" />
+              <xs:enumeration value="Häststall" />
+              <xs:enumeration value="Byggnader för fjäderfä" />
+              <xs:enumeration value="Byggnader för pälsdjur" />
+              <xs:enumeration value="Övriga djurstall" />
+              <xs:enumeration value="Övriga lantbruksbyggnader" />
+              <xs:enumeration value="Växthus" />
+              <xs:enumeration value="Spannmålstorkar och byggnader för uppbevaring av spannmål" />
+              <xs:enumeration value="Lagerbyggnader för lantbruket" />
+              <xs:enumeration value="Gödselstäder" />
+              <xs:enumeration value="Övriga byggnader för jordbruk, skogsbruk och fiske" />
+              <xs:enumeration value="Övriga byggnader" />
+              <xs:enumeration value="Övriga byggnader" />
+              <xs:enumeration value="Bastubyggnader" />
+              <xs:enumeration value="Ekonomibyggnader" />
+              <xs:enumeration value="Hyddor och kojor" />
+              <xs:enumeration value="Byggnader som inte klassificerats någon annanstans" />
+              <xs:enumeration value="Residential buildings" />
+              <xs:enumeration value="Detached and semi-detached houses" />
+              <xs:enumeration value="One-dwelling houses" />
+              <xs:enumeration value="Two-dwelling houses" />
+              <xs:enumeration value="Terraced houses" />
+              <xs:enumeration value="Blocks of flats" />
+              <xs:enumeration value="Low-rise blocks of flats" />
+              <xs:enumeration value="Residential blocks of flats" />
+              <xs:enumeration value="Residential buildings for communities" />
+              <xs:enumeration value="Residential buildings for communities" />
+              <xs:enumeration value="Dwellings for special groups" />
+              <xs:enumeration value="Dwellings for special groups" />
+              <xs:enumeration value="Free-time residential buildings" />
+              <xs:enumeration value="Free-time residential buildings" />
+              <xs:enumeration value="Free-time residential buildings suitable for year-round use" />
+              <xs:enumeration value="Free-time residential buildings suitable for use part of the year" />
+              <xs:enumeration value="Commercial buildings" />
+              <xs:enumeration value="Wholesale and retail trade buildings" />
+              <xs:enumeration value="Shopping halls" />
+              <xs:enumeration value="Shops, department stores and shopping centres" />
+              <xs:enumeration value="Other wholesale and retail trade buildings" />
+              <xs:enumeration value="Hotel buildings" />
+              <xs:enumeration value="Hotels" />
+              <xs:enumeration value="Motels, hostels and similar accommodation buildings" />
+              <xs:enumeration value="Holiday, rest and recreation homes" />
+              <xs:enumeration value="Other hotel buildings" />
+              <xs:enumeration value="Restaurants and other similar buildings" />
+              <xs:enumeration value="Restaurants and other similar buildings" />
+              <xs:enumeration value="Office buildings" />
+              <xs:enumeration value="Office buildings" />
+              <xs:enumeration value="Office buildings" />
+              <xs:enumeration value="Transport and communications buildings" />
+              <xs:enumeration value="Transport and transportation industry buildings" />
+              <xs:enumeration value="Station buildings and terminals" />
+              <xs:enumeration value="Vehicle depots for professional transport" />
+              <xs:enumeration value="Vehicle service buildings for professional transport" />
+              <xs:enumeration value="Car parks and multi-storey car parks" />
+              <xs:enumeration value="Vehicle ports" />
+              <xs:enumeration value="Information and communications technology buildings" />
+              <xs:enumeration value="Data centres and IT areas" />
+              <xs:enumeration value="Communications buildings" />
+              <xs:enumeration value="Other transport and communications buildings" />
+              <xs:enumeration value="Other transport and communications buildings" />
+              <xs:enumeration value="Buildings for institutional care" />
+              <xs:enumeration value="Health care buildings" />
+              <xs:enumeration value="Health care and wellness centres" />
+              <xs:enumeration value="Central hospitals" />
+              <xs:enumeration value="Special hospitals and laboratory buildings" />
+              <xs:enumeration value="Other hospitals" />
+              <xs:enumeration value="Rehabilitation institutes" />
+              <xs:enumeration value="Animal care buildings" />
+              <xs:enumeration value="Other health care buildings" />
+              <xs:enumeration value="Social work activity buildings" />
+              <xs:enumeration value="Residential care activity buildings" />
+              <xs:enumeration value="Buildings for social work activities without accommodation" />
+              <xs:enumeration value="Prisons" />
+              <xs:enumeration value="Prisons" />
+              <xs:enumeration value="Assembly buildings" />
+              <xs:enumeration value="Cultural buildings" />
+              <xs:enumeration value="Theatres, music and congress buildings" />
+              <xs:enumeration value="Cinemas" />
+              <xs:enumeration value="Libraries and archives" />
+              <xs:enumeration value="Museums and art galleries" />
+              <xs:enumeration value="Exhibition and trade fair halls" />
+              <xs:enumeration value="Association and club buildings" />
+              <xs:enumeration value="Association and club buildings" />
+              <xs:enumeration value="Buildings of religious communities" />
+              <xs:enumeration value="Buildings for practicing religion" />
+              <xs:enumeration value="Parish halls" />
+              <xs:enumeration value="Other buildings of religious communities" />
+              <xs:enumeration value="Buildings for sports and physical exercise" />
+              <xs:enumeration value="Indoor ice rinks" />
+              <xs:enumeration value="Indoor swimming pools" />
+              <xs:enumeration value="Gymnasia" />
+              <xs:enumeration value="Sports and ball game halls" />
+              <xs:enumeration value="Stadium and spectator buildings" />
+              <xs:enumeration value="Other buildings for sports and exercise" />
+              <xs:enumeration value="Other assembly buildings" />
+              <xs:enumeration value="Other assembly buildings" />
+              <xs:enumeration value="Educational buildings" />
+              <xs:enumeration value="Early childhood education buildings" />
+              <xs:enumeration value="Children's day care centres" />
+              <xs:enumeration value="General education buildings" />
+              <xs:enumeration value="General education buildings" />
+              <xs:enumeration value="Vocational education buildings" />
+              <xs:enumeration value="Vocational education buildings" />
+              <xs:enumeration value="University and research institute buildings" />
+              <xs:enumeration value="University buildings" />
+              <xs:enumeration value="Research institute buildings" />
+              <xs:enumeration value="Other educational buildings" />
+              <xs:enumeration value="Educational buildings for voluntary adult education" />
+              <xs:enumeration value="Educational buildings of organisations, unions, employers and similar" />
+              <xs:enumeration value="Industrial and mining and quarrying buildings" />
+              <xs:enumeration value="Industrial production buildings" />
+              <xs:enumeration value="General purpose industrial buildings" />
+              <xs:enumeration value="Heavy industry factory buildings" />
+              <xs:enumeration value="Food industry production buildings" />
+              <xs:enumeration value="Other industrial production buildings" />
+              <xs:enumeration value="Workshops for industry and small-scale industry" />
+              <xs:enumeration value="Workshops for industry and small-scale industry" />
+              <xs:enumeration value="Mining and quarrying buildings" />
+              <xs:enumeration value="Processing buildings for metal ores" />
+              <xs:enumeration value="Other mining and quarrying buildings" />
+              <xs:enumeration value="Energy supply buildings" />
+              <xs:enumeration value="Energy production buildings" />
+              <xs:enumeration value="Production buildings for electrical energy" />
+              <xs:enumeration value="Production buildings for thermal and cold energy" />
+              <xs:enumeration value="Other energy supply buildings" />
+              <xs:enumeration value="Energy transfer buildings" />
+              <xs:enumeration value="Energy storage buildings" />
+              <xs:enumeration value="Public utility buildings" />
+              <xs:enumeration value="Water supply buildings" />
+              <xs:enumeration value="Water intake, water treatment and water distribution buildings" />
+              <xs:enumeration value="Waste management buildings" />
+              <xs:enumeration value="Waste collection, waste treatment and waste storage buildings" />
+              <xs:enumeration value="Material recycling buildings" />
+              <xs:enumeration value="Material recycling buildings" />
+              <xs:enumeration value="Warehouses" />
+              <xs:enumeration value="Warehouses" />
+              <xs:enumeration value="Unheated warehouses" />
+              <xs:enumeration value="Heated warehouses" />
+              <xs:enumeration value="Cold and freezer warehouses" />
+              <xs:enumeration value="Other warehouses with controlled conditions" />
+              <xs:enumeration value="Logistics centres and other multi-purpose warehouse buildings" />
+              <xs:enumeration value="Sheds" />
+              <xs:enumeration value="Rescue service buildings" />
+              <xs:enumeration value="Rescue service buildings" />
+              <xs:enumeration value="Fire stations" />
+              <xs:enumeration value="Civil defence shelters" />
+              <xs:enumeration value="Other rescue service buildings" />
+              <xs:enumeration value="Agricultural buildings and livestock shelters" />
+              <xs:enumeration value="Livestock buildings" />
+              <xs:enumeration value="Buildings for dairy cattle" />
+              <xs:enumeration value="Beef cattle buildings" />
+              <xs:enumeration value="Piggeries" />
+              <xs:enumeration value="Sheepfolds and goat barns" />
+              <xs:enumeration value="Horse stables" />
+              <xs:enumeration value="Poultry buildings" />
+              <xs:enumeration value="Fur animal buildings" />
+              <xs:enumeration value="Other animal shelters" />
+              <xs:enumeration value="Other agricultural buildings" />
+              <xs:enumeration value="Greenhouses" />
+              <xs:enumeration value="Grain drying and storage buildings" />
+              <xs:enumeration value="Agricultural storage buildings" />
+              <xs:enumeration value="Manure storage" />
+              <xs:enumeration value="Other buildings in agriculture, forestry and fishing" />
+              <xs:enumeration value="Other buildings" />
+              <xs:enumeration value="Other buildings" />
+              <xs:enumeration value="Sauna buildings" />
+              <xs:enumeration value="Outbuildings" />
+              <xs:enumeration value="Huts and lodges" />
+              <xs:enumeration value="Buildings n.e.c." />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kantavan rakenteen rakennusaine - Betoni" description="Mikäli rakennuskohteessa käytetään kantavana rakenteena betonia, arvo on TRUE. Mikäli kantavien rakenteiden materiaali ei ole tiedossa, merkitään kaikille vaihtoehdoille arvoksi FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakenteidenRakennusaineBetoni</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kantavan rakenteen rakennusaine - Tiili" description="Mikäli rakennuskohteessa käytetään kantavana rakenteena tiiltä, arvo on TRUE. Mikäli kantavien rakenteiden materiaali ei ole tiedossa, merkitään kaikille vaihtoehdoille arvoksi FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakenteidenRakennusaineTiili</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kantavan rakenteen rakennusaine - Teräs" description="Mikäli rakennuskohteessa käytetään kantavana rakenteena terästä, arvo on TRUE. Mikäli kantavien rakenteiden materiaali ei ole tiedossa, merkitään kaikille vaihtoehdoille arvoksi FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakenteidenRakennusaineTeräs</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kantavan rakenteen rakennusaine - Puu" description="Mikäli rakennuskohteessa käytetään kantavana rakenteena puuta, arvo on TRUE. Mikäli kantavien rakenteiden materiaali ei ole tiedossa, merkitään kaikille vaihtoehdoille arvoksi FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakenteidenRakennusainePuu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kantavan rakenteen rakennusaine - Muu" description="Mikäli rakennuskohteen kantavan rakenteen materiaali on tiedossa, mutta se ei ole betoni, tiili teräs tai puu, arvo on TRUE. Mikäli kantavien rakenteiden materiaali ei ole tiedossa, merkitään kaikille vaihtoehdoille arvoksi FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakenteidenRakennusaineMuu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakentamistapa" description="Rakentamistapa määräytyy rakennuksen rungon pääasiallisen rakennustavan mukaan.&#10;Koodisto: Rakentamistapa">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Rakentamistapa</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Elementti" />
+              <xs:enumeration value="Paikalla tehty" />
+              <xs:enumeration value="Element" />
+              <xs:enumeration value="Uppförd på platsen" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Kaukolämpö" description="Mikäli kohteen lämmitysenergian lähde on kaukolämpö arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdeKaukolämpö</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Kevyt polttoöljy" description="Mikäli kohteen lämmitysenergian lähde on kevyt polttoöljy, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdeKevytPolttoöljy</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Raskas polttoöljy" description="Mikäli kohteen lämmitysenergian lähde on raskas polttoöljy, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdeRaskasPolttoöljy</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Sähkö" description="Mikäli kohteen lämmitysenergian lähde on sähkö, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdeSähkö</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Kaasu" description="Mikäli kohteen lämmitysenergian lähde on kaasu, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdeKaasu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Kivihiili" description="Mikäli kohteen lämmitysenergian lähde on kivihiili, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdeKivihiili</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Puu" description="Mikäli kohteen lämmitysenergian lähde on puu, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdePuu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Turve" description="Mikäli kohteen lämmitysenergian lähde on turve, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdeTurve</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Maalämpö" description="Mikäli kohteen lämmitysenergian lähde on maalämpö, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdeMaalämpö</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Aurinkoenergia" description="Mikäli kohteen lämmitysenergian lähde on aurinkoenergia, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdeAurinkoenergia</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Maalämpöpumppu" description="Mikäli kohteen lämmitysenergian lähde on maalämpöpumppu, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdeMaalämpöpumppu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Ilmalämpöpumppu" description="Mikäli kohteen lämmitysenergian lähde on ilmalämpöpumppu, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdeIlmalämpöpumppu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Poistoilmalämpöpumppu" description="Mikäli kohteen lämmitysenergian lähde on poistoilmalämpöpumppu, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdePoistoilmalämpöpumppu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Ilma-vesilämpöpumppu" description="Mikäli kohteen lämmitysenergian lähde on ilma-vesilämpöpumppu, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdeIlma-vesilämpöpumppu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitysenergianlähteen laji - Muu" description="Mikäli kohteen lämmönlähdettä ei löydy koodiston listalta, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitysenergianlähdeMuu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitystavan laji - Vesikeskuslämmitys" description="Mikäli kohteessa on vesikeskuslämmitys, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitystapaVesikeskuslämmitys</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitystavan laji - Ilmakeskuslämmitys" description="Mikäli kohteessa on ilmakeskuslämmitys, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitystapaIlmakeskuslämmitys</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitystavan laji - Sähkölämmitys" description="Mikäli kohteessa on sähkölämmitys, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitystapaSähkölämmitys</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitystavan laji - Uuni-takka-kamiinalämmitys" description="Mikäli kohteessa on uuni-, takka- tai kamiinalämmitys, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitystapaUuni-takka-kamiinalämmitys</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitystavan laji - Aurinkolämmitys" description="Mikäli kohteessa on aurinkolämmitys, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitystapaAurinkolämmitys</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitystavan laji - Ilmalämpöpumppu" description="Mikäli kohteessa on ilmalämpöpumppu, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitystapaIlmalämpöpumppu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitystavan laji - Ei kiinteää lämmityslaitetta" description="Mikäli kohteessa ei ole kiinteää lämmityslaitetta, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitystapaEiKiinteääLämmityslaitetta</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Lämmitystavan laji - Muu" description="Mikäli kohteessa on lämmitys, mutta lämmitystapa on jokin muu kuin koodistossa yksilöidyt lämmitystavat, arvo on TRUE, muutoin FALSE.&#10;Koodisto: Lämmitystavan laji">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>LämmitystapaMuu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Julkisivun rakennusaine - Betoni" description="Mikäli julkisivun rakennusaineena on betoni, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>JulkisivumateriaaliBetoni</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Julkisivun rakennusaine - Tiili" description="Mikäli julkisivun rakennusaineena on tiili, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>JulkisivumateriaaliTiili</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Julkisivun rakennusaine - Metallilevy" description="Mikäli julkisivun rakennusaineena on metallilevy, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>JulkisivumateriaaliMetallilevy</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Julkisivun rakennusaine - Kivi" description="Mikäli julkisivun rakennusaineena on kivi, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>JulkisivumateriaaliKivi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Julkisivun rakennusaine - Puu" description="Mikäli julkisivun rakennusaineena on puu, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>JulkisivumateriaaliPuu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Julkisivun rakennusaine - Lasi" description="Mikäli julkisivun rakennusaineena on lasi, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>JulkisivumateriaaliLasi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Julkisivun rakennusaine - Muu" description="Mikäli julkisivun rakennusaineena on jokin muu kuin koodistossa on yksilöity, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>JulkisivumateriaaliMuu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kokonaisala" description="Kokonaisala tallennetaan kerroksittain IfcSpace komponentteina ja niiden summa lasketaan vastaanottavassa järjestelmässä.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPACE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+        <ids:property dataType="IFCLABEL">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Laajuustieto</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Tyyppi</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="(Kokonaisala)" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPACE</ids:simpleValue>
+          </ids:name>
+          <ids:predefinedType>
+            <ids:simpleValue>GFA</ids:simpleValue>
+          </ids:predefinedType>
+        </ids:entity>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kerrosala" description="Kerrosala tallennetaan kerroksittain IfcSpace komponentteina ja niiden summa lasketaan vastaanottavassa järjestelmässä.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPACE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+        <ids:property dataType="IFCLABEL">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Laajuustieto</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Tyyppi</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="(Kerrosala)" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPACE</ids:simpleValue>
+          </ids:name>
+          <ids:predefinedType>
+            <ids:simpleValue>GFA</ids:simpleValue>
+          </ids:predefinedType>
+        </ids:entity>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennusoikeudellinen kerrosala" description="Rakennusoikeudellinen kerrosala (Rakentamislaki 751/2023 9§ sallimin poikkeamin) tallennetaan kerroksittain IfcSpace komponentteina ja niiden summa lasketaan vastaanottavassa järjestelmässä.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPACE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+        <ids:property dataType="IFCLABEL">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Laajuustieto</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Tyyppi</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="(Rakennusoikeudellinen kerrosala)" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPACE</ids:simpleValue>
+          </ids:name>
+          <ids:predefinedType>
+            <ids:simpleValue>GFA</ids:simpleValue>
+          </ids:predefinedType>
+        </ids:entity>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Korkeus" description="Korkojärjestelmän mukainen absoluuttinen korkeus rakennuksen tai rakennuksen osan korkeimmasta kohdasta. Yksikkö m (esim. +13,22).">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenKorkeus</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kerrosluku" description="Rakennuksen maanpäällisten kerrosten lukumäärä. Kerroslukuun lasketaan kaikki kokonaan tai pääasiallisesti maanpinnan yläpuolella olevat kerrokset, joissa on asuin- tai työ (toimi-) tiloja tai rakennuksen pääasiallisen käyttötarkoituksen mukaisia tiloja. Kerroslukuun ei lasketa kellaria ja ullakkoa.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenKerrosluku</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Tilavuus" description="Rakennuksen tilavuus lasketaan sen tilan perusteella, jota rajoittavat ulkoseinien ulkopinnat, alapohjan alapinta ja yläpohjan yläpinta. Yksikkö m3.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenTilavuus</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Suhde maan pintaan" description="Tieto siitä, missä rakennuskohde sijaitsee suhteessa maan pintaan.&#10;Koodisto: Suhde maan pintaan">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenSuhdeMaanpintaan</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Kokonaan pinnan yllä" />
+              <xs:enumeration value="Olennaisesti kokonaan pinnan yllä" />
+              <xs:enumeration value="Pinnan yllä ja alla" />
+              <xs:enumeration value="Olennaisesti kokonaan pinnan alla" />
+              <xs:enumeration value="Kokonaan pinnan alla" />
+              <xs:enumeration value="Helt ovanför jordytan" />
+              <xs:enumeration value="Väsentligen helt ovanför jordytan" />
+              <xs:enumeration value="Ovanför och under jordytan" />
+              <xs:enumeration value="Väsentligen helt under jordytan" />
+              <xs:enumeration value="Helt under jordytan" />
+              <xs:enumeration value="Entirely above terrain" />
+              <xs:enumeration value="Substantially above terrain" />
+              <xs:enumeration value="Above and below terrain" />
+              <xs:enumeration value="Substantially below terrain" />
+              <xs:enumeration value="Entirely below terrain" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Huoneistoala yhteensä" description="Huoneistoala tallennetaan huoneistoittain IfcSpace komponeteilla ja niiden summa lasketaan vastaanottavassa järjestelmässä.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPATIALZONE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPATIALZONE</ids:simpleValue>
+          </ids:name>
+          <ids:predefinedType>
+            <ids:simpleValue>OCCUPANCY</ids:simpleValue>
+          </ids:predefinedType>
+        </ids:entity>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kellariala" description="Kellariala tallennetaan kerroksittain IfcSpace komponeteilla ja niiden summa lasketaan vastaanottavassa järjestelmässä.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPACE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+        <ids:property dataType="IFCLABEL">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Laajuustieto</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Tyyppi</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="(Kellariala)" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPACE</ids:simpleValue>
+          </ids:name>
+          <ids:predefinedType>
+            <ids:simpleValue>GFA</ids:simpleValue>
+          </ids:predefinedType>
+        </ids:entity>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Ullakkoala" description="Ullakkoala tallennetaan kerroksittain IfcSpace komponeteilla ja niiden summa lasketaan vastaanottavassa järjestelmässä.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPACE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+        <ids:property dataType="IFCLABEL">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Laajuustieto</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Tyyppi</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="(Ullakkoala)" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPACE</ids:simpleValue>
+          </ids:name>
+          <ids:predefinedType>
+            <ids:simpleValue>GFA</ids:simpleValue>
+          </ids:predefinedType>
+        </ids:entity>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kokoontumistilon yhteenlaskettu henkilömäärä" description="Rakennuksen osan kokoontumistilojen yhteenlaskettu henkilömäärä.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>KokoontumistilojenHenkilömäärä</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kulttuurihistoriallinen merkittävyys" description="Tieto kohteen kulttuurihistoriallisesta merkittävyydestä.&#10;Koodisto: Kulttuurihistoriallinen merkittävyys">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>KulttuurihistoriallinenMerkittävyys</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Merkittävyyttä ei ole arvioitu" />
+              <xs:enumeration value="Arvioitu, ei tunnisteta merkittävyyttä" />
+              <xs:enumeration value="Paikallinen" />
+              <xs:enumeration value="Seudullinen" />
+              <xs:enumeration value="Maakunnallinen" />
+              <xs:enumeration value="Valtakunnallinen" />
+              <xs:enumeration value="Kansainvälinen" />
+              <xs:enumeration value="Betydelsen är inte värderad" />
+              <xs:enumeration value="Lokal" />
+              <xs:enumeration value="Områdesvis/regional" />
+              <xs:enumeration value="På landskapsnivå" />
+              <xs:enumeration value="Riksomfattande" />
+              <xs:enumeration value="Internationell" />
+              <xs:enumeration value="Significance has not been evaluated" />
+              <xs:enumeration value="Local" />
+              <xs:enumeration value="Area-specific/Sub-regional" />
+              <xs:enumeration value="Regional" />
+              <xs:enumeration value="National" />
+              <xs:enumeration value="International" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuksen osatunnus" description="Mikäli rakennus koostuu useammasta osasta, annetaan kullekin osalle yksilöivä tunnus. Katso myös RakennuksenOsittelunPeruste -kenttä.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenOsatunnus</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuksen osittelun peruste" description="Mikäli rakennus koostuu useammasta osasta, annetaan kullekin osalle tieto, millä perusteella osittaminen on ko. osan kohdalla tehty. Katso myös RakennuksenOsatunnus -kenttä.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenOsittelunPeruste</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Käyttötarkoitukseen perustuva osittelu" />
+              <xs:enumeration value="Rakentamishistoriaan perustuva osittelu" />
+              <xs:enumeration value="Muu ositteluperuste" />
+              <xs:enumeration value="Indelning som grundar sig på användningsändamål" />
+              <xs:enumeration value="Indelning som grundar sig på byggnadshistoria" />
+              <xs:enumeration value="Annan indelningsgrund" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Suojelutapa" description="Digi- ja väestövirastolle toimitettava tieto rakennuksen osan suojeluperusteesta.&#10;Koodisto: Suojelun tapa">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Suojelutapa</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Laki rakennusperinnön suojelemisesta" />
+              <xs:enumeration value="Asetus 480/85" />
+              <xs:enumeration value="Kirkkolaki" />
+              <xs:enumeration value="Laki ortodoksisesta kirkosta" />
+              <xs:enumeration value="Rautatiesopimus 1998" />
+              <xs:enumeration value="VAT//RKY" />
+              <xs:enumeration value="suojelu vireillä" />
+              <xs:enumeration value="suojeltu" />
+              <xs:enumeration value="suojeluesitys hylätty" />
+              <xs:enumeration value="suojelupäätös kumottu" />
+              <xs:enumeration value="ei suojeltu" />
+              <xs:enumeration value="rauennut" />
+              <xs:enumeration value="Kaava" />
+              <xs:enumeration value="Maakuntakaava" />
+              <xs:enumeration value="Yleiskaava" />
+              <xs:enumeration value="Asemakaava" />
+              <xs:enumeration value="Muinaismuistolaki" />
+              <xs:enumeration value="Luonnonsuojelulaki" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Jäähdytystavan laji" description="Rakennuskohteen jäähdytystapa.&#10;Koodisto: Jäähdytystavan laji">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Jäähdytystapa</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Ilmajäähdytteinen" />
+              <xs:enumeration value="Vesijäähdytteinen" />
+              <xs:enumeration value="Ei kiinteää jäähdytyslaitetta" />
+              <xs:enumeration value="Luftkyld" />
+              <xs:enumeration value="Vattenkyld" />
+              <xs:enumeration value="Inget fast kylaggregat" />
+              <xs:enumeration value="Air-cooled" />
+              <xs:enumeration value="Water-cooled" />
+              <xs:enumeration value="No fixed cooling device" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Ilmanvaihtotavan laji" description="Rakennuksen ilmanvaihdon hallintatapa.&#10;Koodisto: Ilmanvaihtotavan laji">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Ilmanvaihtotapa</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Painovoimainen ilmanvaihto" />
+              <xs:enumeration value="Koneellinen poistoilmanvaihto" />
+              <xs:enumeration value="Koneellinen tulo- ja poistoilmanvaihto" />
+              <xs:enumeration value="Självdragsventilation" />
+              <xs:enumeration value="Maskinell frånluftsventilation" />
+              <xs:enumeration value="Maskinell till- och frånluftsventilation" />
+              <xs:enumeration value="Natural ventilation" />
+              <xs:enumeration value="Mechanical extraction ventilation" />
+              <xs:enumeration value="Mechanical supply and extraction ventilation" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Talousveden laji" description="Tieto mistä rakennuskohteessa käytetty talousvesi tulee.&#10;Koodisto: Talousveden laji">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>TalousvedenLaji</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Verkostoliittymä" />
+              <xs:enumeration value="Oma kaivo" />
+              <xs:enumeration value="Rengaskaivo" />
+              <xs:enumeration value="Porakaivo" />
+              <xs:enumeration value="Siiviläputkikaivo" />
+              <xs:enumeration value="Pintavesikaivo" />
+              <xs:enumeration value="Kantovesi" />
+              <xs:enumeration value="Ei talousvettä" />
+              <xs:enumeration value="Nätverksanslutning" />
+              <xs:enumeration value="Egen brunn" />
+              <xs:enumeration value="Schaktbrunn" />
+              <xs:enumeration value="Borrbrunn" />
+              <xs:enumeration value="Brunn med perforerat foderrör" />
+              <xs:enumeration value="Ytvattenbrunn" />
+              <xs:enumeration value="Bärvatten" />
+              <xs:enumeration value="Inget hushållsvatten" />
+              <xs:enumeration value="Network connections" />
+              <xs:enumeration value="Private well" />
+              <xs:enumeration value="Dug well" />
+              <xs:enumeration value="Bored well" />
+              <xs:enumeration value="Perforated casing well" />
+              <xs:enumeration value="Surface well" />
+              <xs:enumeration value="Water carried or pumped" />
+              <xs:enumeration value="No household water" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Jätevesien käsittelyn laji" description="Tieto miten jätevesien käsittely on hoidettu kohteessa.&#10;Koodisto: Jätevesien käsittelyn laji">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>JätevesienKäsittelytapa</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Verkostoliittymä" />
+              <xs:enumeration value="Jätevesisäiliö" />
+              <xs:enumeration value="Maapuhdistamo" />
+              <xs:enumeration value="Laitepuhdistamo" />
+              <xs:enumeration value="Harmaavesipuhdistamo" />
+              <xs:enumeration value="Ei tarvetta jätevesien käsittelylle" />
+              <xs:enumeration value="99 - Muu käsittely" />
+              <xs:enumeration value="Nätverksanslutning" />
+              <xs:enumeration value="Avloppsbehållare" />
+              <xs:enumeration value="Markbäddsanläggning" />
+              <xs:enumeration value="Reningsverk för anordningar" />
+              <xs:enumeration value="Gråvattenreningsverk" />
+              <xs:enumeration value="Inget behov av avloppsvattenhantering" />
+              <xs:enumeration value="99 - Övrig behandling" />
+              <xs:enumeration value="Network connections" />
+              <xs:enumeration value="Wastewater tank" />
+              <xs:enumeration value="Subsurface disposal system" />
+              <xs:enumeration value="Small sewage treatment plant" />
+              <xs:enumeration value="Greywater treatment plant" />
+              <xs:enumeration value="No need for wastewater treatment" />
+              <xs:enumeration value="99 - Other treatment" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennuksen paloluokka" description="Rakennusten paloluokitus, joka on määritelty ympäristöministeriön asetuksessa rakennusten paloturvallisuudesta (848/2017, 4 §).&#10;Koodisto: Paloluokka">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Paloluokka</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="P0" />
+              <xs:enumeration value="P1" />
+              <xs:enumeration value="P2" />
+              <xs:enumeration value="P3" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Energiatehokkuusluokka" description="Rakennuksen tai sen osan laskennallisen kokonaisenergiankulutuksen perusteella määräytyvä luokka.&#10;Koodisto: Energiatehokkuusluokka">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Energiatehokkuusluokka</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="A" />
+              <xs:enumeration value="B" />
+              <xs:enumeration value="C" />
+              <xs:enumeration value="D" />
+              <xs:enumeration value="E" />
+              <xs:enumeration value="F" />
+              <xs:enumeration value="G" />
+              <xs:enumeration value="Ei vaadittu" />
+              <xs:enumeration value="Krävs inte" />
+              <xs:enumeration value="Not required" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Energiatehokkuusluokan  alaindeksi" description="Energiatehokkuusluokan alaindeksillä ilmoitetaan tieto siitä, minkä vuoden lainsäädännön mukaisesti energiatodistus on laadittu. YMa 1048/2017 9 §.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCLABEL" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>EnergiatehokkuusluokanAlaindeksi</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="2007" />
+              <xs:enumeration value="2013" />
+              <xs:enumeration value="2018" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Varusteen laji - Sähkö" description="Mikäli rakennuksen osassa on sähköverkko, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenVarusteSähkö</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Varusteen laji - Kaasu" description="Mikäli rakennuksen osassa on kaasuverkko, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenVarusteKaasu</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Varusteen laji - Jätevesiviemäri" description="Mikäli rakennuksen osassa on jätevesiviemäri, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenVarusteJätevesiviemäri</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Varusteen laji - Vesijohto" description="Mikäli rakennuksen osassa on vesijohtoverkko, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenVarusteVesijohto</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Varusteen laji - Lämmin vesi" description="Mikäli rakennuksen osassa on lämmin vesi, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenVarusteLämminVesi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Varusteen laji - Koneellinen ilmastointi" description="Mikäli rakennuksen osassa on koneellinen ilmastointi, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenVarusteKoneellinenIlmastointi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Varusteen laji - Aurinkopaneeli" description="Mikäli rakennuksen osassa on aurinkopaneeli, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenVarusteAurinkopaneeli</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Varusteen laji - Hissi" description="Mikäli rakennuksen osassa on hissi, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenVarusteHissi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Varusteen laji - Uima-allas" description="Mikäli rakennuksen osassa on yhteiskäytössä oleva uima-allas, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenVarusteUima-allas</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Varusteen laji - Sauna" description="Mikäli rakennuksen osassa on yhteiskäytössä oleva sauna, arvo on TRUE, muutoin FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennuksenVarusteSauna</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Yleiskaapeloinnin optinen kaapelointi" description="Mikäli rakennuskohteessa on valokuiduilla toteutettu sisäverkko, arvo TRUE. Mikäli verkkoa ei ole tai se ei ole tiedossa, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>OptinenKaapelointi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Yleiskaapeloinnin parikaapelointi" description="Mikäli rakennuskohteessa on yleiskaapeloinnin parikaapelointi, arvo TRUE. Mikäli kaapelointia ei ole tai se ei ole tiedossa, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Parikaapelointi</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Antenniverkko" description="Mikäli rakennuskohteessa on antenniverkko, arvo TRUE. Mikäli verkkoa ei ole tai se ei ole tiedossa, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Antenniverkko</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Olemassa oleva valokuituverkko" description="Mikäli rakennuskohteessa on valokuituverkko, arvo TRUE. Mikäli verkkoa ei ole tai se ei ole tiedossa, arvo on FALSE.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Talotekniikka</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>OlemassaOlevaValokuituverkko</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kokonaisalan muutos" description="Tieto kohteen kokonaisalan muutoksesta rakentamistoimenpiteellä käsittäen kerrosten, kellareiden ja lämpöeristettyjen ullakoiden pinta-alat ulkomitoin. Kokonaisalaan ei lasketa parvekkeita, katoksia eikä 160 cm:ä matalampia tiloja. Muutos voi olla positiivinen tai negatiivinen. Yksikkö m2.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>KokonaisalanMuutos</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kerrosalan muutos" description="Tieto kohteen kerrosalan muutoksesta rakentamistoimenpiteellä käsittäen kerrosten alat ulkoseinien ulkopinnan mukaan laskettuina sekä sen kellarikerroksen tai ullakon alan, johon sijoitetaan tai voidaan sijoittaa rakennuksen pääasiallisen käyttötarkoituksen mukaisia tiloja. Muutos voi olla positiivinen tai negatiivinen Yksikkö m2.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>KerrosalanMuutos</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Rakennusoikeudellisen kerrosalan muutos" description="Tieto kohteen rakennusoikeudellisen kerrosalan muutoksesta (kerrosala rakentamislain 751/2023 9§ sallimin poikkeamin) rakentamistoimenpiteellä. Muutos voi olla positiivinen tai negatiivinen. Yksikkö m2.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>RakennusoikeudellisenKerrosalanMuutos</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Huoneistoalan muutos" description="Tieto kohteen huoneistoalan muutoksesta rakentamistoimenpiteellä. Muutos voi olla positiivinen tai negatiivinen. Yksikkö m2.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCREAL" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>HuoneistoalanMuutos</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kellarialan muutos" description="Tieto kohteen kellarialan muutoksesta rakentamistoimenpiteellä. Muutos voi olla positiivinen tai negatiivinen. Yksikkö m2.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>KellarialanMuutos</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Kerrosluvun muutos" description="Tieto kohteen kerrosluvun muutoksesta rakentamistoimenpiteellä. Muutos voi olla positiivinen tai negatiivinen. Yksikkö m2.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>KerrosluvunMuutos</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Tilavuuden muutos" description="Tieto kohteen tilavuuden muutoksesta rakentamistoimenpiteellä. Muutos voi olla positiivinen tai negatiivinen. Yksikkö m3.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBUILDING</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCINTEGER" cardinality="optional">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kohde</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>TilavuudenMuutos</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="ETRS89 koordinaattijärjestelmä jossa tietomalli sijaitsee" description="Koordinaattijärjestelmä ilmastaan ESPG-koodilla (esim. ESPG:3067). Koodin virallisen formaatin mukaisesti koodissa tulee olla kaksoispiste alkuosan ja numeron välissä.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCPROJECTEDCRS</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCPROJECTEDCRS</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+        <ids:attribute>
+          <ids:name>
+            <ids:simpleValue>Name</ids:simpleValue>
+          </ids:name>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="(EPSG:3873|EPSG:3874|EPSG:3875|EPSG:3876|EPSG:3877|EPSG:3878|EPSG:3879|EPSG:3880|EPSG:3881|EPSG:3882|EPSG:3883|EPSG:3884|EPSG:3885|EPSG:3067).*" />
+            </xs:restriction>
+          </ids:value>
+        </ids:attribute>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Tietomallin origon itäkoordinaatti ETRS89 järjestelmässä" description="IFC-mallin projektiorigon itäkoordinaatti ETRS89 järjestelmän mukaisessa koordinaatistossa.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCMAPCONVERSION</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCMAPCONVERSION</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Tietomallin origon pohjoiskoordinaatti ETRS89 järjestelmässä" description="IFC-mallin projektiorigon pohjoiskoordinaatti ETRS89 järjestelmän mukaisessa koordinaatistossa.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCMAPCONVERSION</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCMAPCONVERSION</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Tietomallin korkeuskoordinaattijärjestelmä" description="Yksi arvo koodistosta sisältäen vain koodin nimen sellaisena kuin se on koodistossa. Arvoksi hyväksytään kaikki ko. koodistossa olevat koodien nimien kieliversiot. Esimerkiksi &quot;N2000&quot;.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSITE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>FI_Kiinteistö</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Korkojärjestelmä</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+  </ids:specifications>
+</ids:ids>

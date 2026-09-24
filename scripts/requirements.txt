@@ -1,0 +1,2 @@
+# Para apply_rava_patch.py (patch IFC RAVA)
+ifcopenshell>=0.8.0

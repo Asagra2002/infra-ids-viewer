@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Testing
+coverage/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE / OS
+.DS_Store
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local / diagnostic (no deploy)
+MIGRATION_LOG.md
+diagnose-ids.js
+diagnose-ids-validation.js
+
+# IFC files generados localmente por el flujo RAVA (no se despliegan)
+public/assets/IFC example/*_RAVA_fixed*.ifc
+public/assets/IFC example/*_ifc4x3*.ifc
