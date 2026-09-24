@@ -1,6 +1,5 @@
 /**
  * Parses an IDS XML file and returns the list of specifications (name + description).
- * Used for the full RAVA 3.5 report so each of the 123 points can be shown with context.
  */
 
 export interface IDSSpecItem {
@@ -9,12 +8,10 @@ export interface IDSSpecItem {
   description: string;
 }
 
-const IDS_SPEC_PATH = "/assets/IFC example/RAVA3x5_asetuksen_liite1_tarkastus_v1_0.ids";
-
 /**
- * Fetches the IDS file and parses it to return all specification names and descriptions.
+ * Fetches an IDS file from a URL and parses specification names and descriptions.
  */
-export async function fetchIDSSpecList(idsUrl: string = IDS_SPEC_PATH): Promise<IDSSpecItem[]> {
+export async function fetchIDSSpecList(idsUrl: string): Promise<IDSSpecItem[]> {
   const response = await fetch(idsUrl);
   if (!response.ok) throw new Error(`Failed to fetch IDS: ${response.status}`);
   const xml = await response.text();

@@ -3,7 +3,6 @@ import * as FRAGS from "@thatopen/fragments";
 import * as THREE from "three";
 import * as OBCF from "@thatopen/components-front";
 import type { Topic } from "@thatopen/components";
-import { fetchRAVAGuidance, getGuidanceForSpecName } from "../../utils/ravaExcelGuidance";
 import { setViewerSelection } from "../../ui-templates/components3/visualizationToolbar";
 
 /**
@@ -27,7 +26,9 @@ export interface BCFMetadata {
 
 export class BCFTool extends OBC.Component {
   static uuid = "2bfa3a13-033e-4998-9fe3-d0a545c3931e" as const;
-  static RAVA_CATEGORY_NAME = "RAVA 3.5 Validation";
+  /** @deprecated Use IDS_CATEGORY_NAME */
+  static RAVA_CATEGORY_NAME = "IDS Validation";
+  static IDS_CATEGORY_NAME = "IDS Validation";
   static readonly GHOST_CONTEXT_OPACITY = 0.2;
   static readonly HIGHLIGHT_STYLE = "ids-validation-fails";
 
@@ -46,11 +47,11 @@ export class BCFTool extends OBC.Component {
     const bcfTopics = this.components.get(OBC.BCFTopics);
     if (bcfTopics && !bcfTopics.isSetup) {
       bcfTopics.setup({
-        author: "RAVA Validator",
+        author: "IDS Validator",
         version: "2.1",
         types: new Set([...bcfTopics.config.types, "Error", "Warning", "Info"]),
         statuses: new Set(["open", "in_progress", "closed"]),
-        users: new Set(["RAVA Validator"]),
+        users: new Set(["IDS Validator"]),
       });
     }
     const viewpoints = this.components.get(OBC.Viewpoints);
@@ -133,11 +134,19 @@ export class BCFTool extends OBC.Component {
   }
 
   /**
-   * Creates BCF topics from RAVA validation report using official BCFTopics + Viewpoints.
+   * Creates BCF topics from an IDS validation report (official BCFTopics + Viewpoints).
    */
-  async createTopicsFromRAVAValidationReport(
-    report: { failures?: Array<{ modelId?: string; expressID: number; entityType?: string; entityName?: string; checks?: Array<{ specName?: string; details?: string }> }> },
-    author: string = "RAVA Validator"
+  async createTopicsFromValidationReport(
+    report: {
+      failures?: Array<{
+        modelId?: string;
+        expressID: number;
+        entityType?: string;
+        entityName?: string;
+        checks?: Array<{ specName?: string; details?: string }>;
+      }>;
+    },
+    author: string = "IDS Validator"
   ): Promise<Topic[]> {
     const failures = report.failures ?? [];
     if (failures.length === 0) return [];
@@ -150,22 +159,17 @@ export class BCFTool extends OBC.Component {
     if (!world) throw new Error("No world available for viewpoints");
 
     viewpoints.world = world;
-    const firstModelId = this.fragments && this.fragments.list.size > 0 ? Array.from(this.fragments.list.keys())[0] : undefined;
+    const firstModelId =
+      this.fragments && this.fragments.list.size > 0
+        ? Array.from(this.fragments.list.keys())[0]
+        : undefined;
     const created: Topic[] = [];
 
-    // Clear previous RAVA topics so each "Generate" replaces the batch
     const toRemove: string[] = [];
     for (const [guid, topic] of bcfTopics.list) {
-      if (topic.labels?.has(BCFTool.RAVA_CATEGORY_NAME)) toRemove.push(guid);
+      if (topic.labels?.has(BCFTool.IDS_CATEGORY_NAME)) toRemove.push(guid);
     }
     for (const guid of toRemove) bcfTopics.list.delete(guid);
-
-    let ravaGuidance: Awaited<ReturnType<typeof fetchRAVAGuidance>> | null = null;
-    try {
-      ravaGuidance = await fetchRAVAGuidance();
-    } catch {
-      // optional: Excel not available
-    }
 
     for (const failure of failures) {
       const modelId = failure.modelId ?? firstModelId;
@@ -173,7 +177,9 @@ export class BCFTool extends OBC.Component {
 
       const globalId = await this.getElementGlobalId(modelId, failure.expressID);
       if (!globalId) {
-        console.warn(`[BCFTool] No IFC GlobalId for element ${failure.expressID} (${failure.entityType ?? "Element"}). Archicad will not highlight it. Check that the model exposes getProperties/getItemsData with GlobalId.`);
+        console.warn(
+          `[BCFTool] No IFC GlobalId for element ${failure.expressID} (${failure.entityType ?? "Element"}). Authoring tools may not highlight it.`
+        );
       }
       const cam = await this.getViewpointPositionFromElement(modelId, failure.expressID);
 
@@ -181,7 +187,11 @@ export class BCFTool extends OBC.Component {
         orthogonal_camera: cam
           ? {
               camera_view_point: { x: cam.position.x, y: cam.position.y, z: cam.position.z },
-              camera_direction: { x: cam.target.x - cam.position.x, y: cam.target.y - cam.position.y, z: cam.target.z - cam.position.z },
+              camera_direction: {
+                x: cam.target.x - cam.position.x,
+                y: cam.target.y - cam.position.y,
+                z: cam.target.z - cam.position.z,
+              },
               camera_up_vector: { x: 0, y: 0, z: 1 },
               aspect_ratio: 16 / 9,
               view_to_world_scale: 1,
@@ -192,36 +202,34 @@ export class BCFTool extends OBC.Component {
       if (globalId) viewpoint.selectionComponents.add(globalId);
 
       if (world.camera?.controls && cam) {
-        world.camera.controls.setLookAt(cam.position.x, cam.position.y, cam.position.z, cam.target.x, cam.target.y, cam.target.z, true);
+        world.camera.controls.setLookAt(
+          cam.position.x,
+          cam.position.y,
+          cam.position.z,
+          cam.target.x,
+          cam.target.y,
+          cam.target.z,
+          true
+        );
         await viewpoint.updateCamera(true);
       }
 
       const specNames = (failure.checks ?? []).map((c) => c.specName ?? "spec").filter(Boolean);
-      const specList = specNames.length > 0 ? specNames.join(", ") : "Required RAVA 3.5 properties";
+      const specList = specNames.length > 0 ? specNames.join(", ") : "IDS specification";
       const elementLine = `Element: ${failure.entityType ?? "Element"} "${failure.entityName ?? ""}" (Express ID: ${failure.expressID})`;
-      const propsLine = `Properties / specifications to add or fix: ${specList}`;
-      const actionLine = "In Archicad: add or complete these properties for the highlighted element, then re-export IFC and re-validate.";
-      let description = [elementLine, "", propsLine, "", actionLine].join("\n");
-      let commentBody = `What to modify: ${specList}.\n\n${actionLine}`;
-      if (ravaGuidance && specNames.length > 0) {
-        const guidanceLines: string[] = [];
-        for (const name of specNames) {
-          const guidance = getGuidanceForSpecName(name, ravaGuidance);
-          if (guidance) guidanceLines.push(`${name}: ${guidance}`);
-        }
-        if (guidanceLines.length > 0) {
-          description += "\n\nHow to fill (RAVA):\n" + guidanceLines.join("\n\n");
-          commentBody += "\n\nHow to fill (RAVA):\n" + guidanceLines.join("\n\n");
-        }
-      }
+      const propsLine = `Specifications to add or fix: ${specList}`;
+      const actionLine =
+        "In your IFC authoring tool: fix these properties for the highlighted element, re-export IFC and re-validate.";
+      const description = [elementLine, "", propsLine, "", actionLine].join("\n");
+      const commentBody = `What to modify: ${specList}.\n\n${actionLine}`;
 
       const topic = bcfTopics.create({
-        title: `RAVA 3.5: ${failure.entityType ?? "Element"} ${failure.entityName ?? ""} – ${specList}`,
+        title: `IDS: ${failure.entityType ?? "Element"} ${failure.entityName ?? ""} – ${specList}`,
         description,
         type: "Error",
         status: "open",
         priority: "High",
-        labels: new Set([BCFTool.RAVA_CATEGORY_NAME]),
+        labels: new Set([BCFTool.IDS_CATEGORY_NAME]),
         creationAuthor: author,
       });
       topic.viewpoints.add(viewpoint.guid);
@@ -229,6 +237,59 @@ export class BCFTool extends OBC.Component {
       created.push(topic);
     }
     return created;
+  }
+
+  /** @deprecated Use createTopicsFromValidationReport */
+  async createTopicsFromRAVAValidationReport(
+    report: {
+      failures?: Array<{
+        modelId?: string;
+        expressID: number;
+        entityType?: string;
+        entityName?: string;
+        checks?: Array<{ specName?: string; details?: string }>;
+      }>;
+    },
+    author: string = "IDS Validator"
+  ): Promise<Topic[]> {
+    return this.createTopicsFromValidationReport(report, author);
+  }
+
+  /** Highlight a model element (camera + red selection + ghost context). Used by BCF panel table rows. */
+  async highlightElement(modelId: string, expressID: number): Promise<void> {
+    const highlighter = this.components.get(OBCF.Highlighter);
+    if (!highlighter) return;
+
+    if (!highlighter.styles.get(BCFTool.HIGHLIGHT_STYLE)) {
+      highlighter.styles.set(BCFTool.HIGHLIGHT_STYLE, {
+        color: new THREE.Color("#f44336"),
+        renderedFaces: FRAGS.RenderedFaces.ONE,
+        opacity: 1,
+        transparent: false,
+      });
+    }
+
+    highlighter.clear();
+    this.applyGhostContext();
+
+    const cam = await this.getViewpointPositionFromElement(modelId, expressID);
+    const world = this.getWorld();
+    if (world?.camera?.controls && cam) {
+      world.camera.controls.setLookAt(
+        cam.position.x,
+        cam.position.y,
+        cam.position.z,
+        cam.target.x,
+        cam.target.y,
+        cam.target.z,
+        true
+      );
+    }
+
+    const selection: Record<string, Set<number>> = { [modelId]: new Set([expressID]) };
+    await highlighter.highlightByID(BCFTool.HIGHLIGHT_STYLE, selection);
+    await highlighter.highlightByID("select", selection, true, false);
+    setViewerSelection(selection);
   }
 
   async exportBCFFile(): Promise<Blob> {
@@ -241,9 +302,11 @@ export class BCFTool extends OBC.Component {
   getCategories(): BCFCategory[] {
     const bcfTopics = this.components.get(OBC.BCFTopics);
     if (!bcfTopics) return [];
-    const topics = Array.from(bcfTopics.list.values()).filter((t) => t.labels?.has(BCFTool.RAVA_CATEGORY_NAME));
+    const topics = Array.from(bcfTopics.list.values()).filter((t) =>
+      t.labels?.has(BCFTool.IDS_CATEGORY_NAME)
+    );
     if (topics.length === 0) return [];
-    return [{ id: "rava", name: BCFTool.RAVA_CATEGORY_NAME, cases: topics }];
+    return [{ id: "ids", name: BCFTool.IDS_CATEGORY_NAME, cases: topics }];
   }
 
   getCaseById(_categoryId: string, caseId: string): Topic | undefined {

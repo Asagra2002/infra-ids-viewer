@@ -820,7 +820,7 @@ export function IntegratedViewer({ components, ifcFilePath, containerId, isVisib
 
         const bcfTopics = worldComponents.get(OBC.BCFTopics);
         const viewpoints = worldComponents.get(OBC.Viewpoints);
-        if (!bcfTopics.isSetup) bcfTopics.setup({ author: "RAVA Validator", version: "2.1" });
+        if (!bcfTopics.isSetup) bcfTopics.setup({ author: "IDS Validator", version: "2.1" });
         viewpoints.world = world;
         const { BCFTool } = await import("../bim_components/BCF");
         new BCFTool(worldComponents);

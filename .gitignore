@@ -29,3 +29,6 @@ diagnose-ids-validation.js
 # IFC files generados localmente por el flujo RAVA (no se despliegan)
 public/assets/IFC example/*_RAVA_fixed*.ifc
 public/assets/IFC example/*_ifc4x3*.ifc
+
+# Local Netlify folder
+.netlify

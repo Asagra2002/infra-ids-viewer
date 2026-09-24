@@ -479,7 +479,7 @@ export const sidebarToggleToolbarTemplate: BUI.StatefullComponent<SidebarToggleT
     if (idsBtn) idsBtn.setAttribute("tooltip-title", idsVisible ? "Hide IDS Validation" : "IDS Validation");
 
     const bcfBtn = document.getElementById("toggle-bcf");
-    if (bcfBtn) bcfBtn.setAttribute("tooltip-title", bcfVisible ? "Hide BCF (RAVA 3.5)" : "BCF (RAVA 3.5)");
+    if (bcfBtn) bcfBtn.setAttribute("tooltip-title", bcfVisible ? "Hide BCF" : "BCF");
   };
 
   const onCreated = (e?: Element) => {
@@ -531,6 +531,12 @@ export const sidebarToggleToolbarTemplate: BUI.StatefullComponent<SidebarToggleT
     });
   };
 
+  // Hidden viewer toolbar buttons (restore when needed):
+  // - Queries Panel: id=toggle-right-sidebar, toggleRightSidebar, icon gravity-ui:magnifier
+  // - Element Quantities: id=toggle-quantities, toggleQuantities, icon solar:ruler-bold
+  // - LCA Analysis: id=toggle-lca, toggleLCA, icon material-symbols:eco
+  // - Cost Analysis: id=toggle-cost, toggleCost, icon material-symbols:euro
+
   return BUI.html`
     <div style="
       position: absolute;
@@ -555,15 +561,7 @@ export const sidebarToggleToolbarTemplate: BUI.StatefullComponent<SidebarToggleT
         tooltip-position="right"
         style="width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
       ></bim-button>
-      <bim-button 
-        id="toggle-right-sidebar"
-        @click=${toggleRightSidebar}
-        icon="gravity-ui:magnifier"
-        tooltip-title="Queries Panel"
-        tooltip-text="Open the queries panel to search and filter elements by properties, categories, or custom criteria."
-        tooltip-position="right"
-        style="width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
-      ></bim-button>
+      ${null /* hidden: Queries Panel (toggle-right-sidebar) */}
       <bim-button 
         id="toggle-element-data"
         @click=${toggleElementData}
@@ -582,33 +580,7 @@ export const sidebarToggleToolbarTemplate: BUI.StatefullComponent<SidebarToggleT
         tooltip-position="right"
         style="width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
       ></bim-button>
-      <bim-button 
-        id="toggle-quantities"
-        @click=${toggleQuantities}
-        icon="solar:ruler-bold"
-        tooltip-title="Element Quantities"
-        tooltip-text="View and analyze quantities of selected elements, including areas, volumes, and material takeoffs."
-        tooltip-position="right"
-        style="width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
-      ></bim-button>
-      <bim-button 
-        id="toggle-lca"
-        @click=${toggleLCA}
-        icon="material-symbols:eco"
-        tooltip-title="LCA Analysis"
-        tooltip-text="Perform Life Cycle Assessment analysis on the complete loaded IFC model to calculate material quantities and environmental impact."
-        tooltip-position="right"
-        style="width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
-      ></bim-button>
-      <bim-button 
-        id="toggle-cost"
-        @click=${toggleCost}
-        icon="material-symbols:euro"
-        tooltip-title="Cost Analysis"
-        tooltip-text="Perform cost analysis on selected elements to calculate material costs and construction estimates."
-        tooltip-position="right"
-        style="width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
-      ></bim-button>
+      ${null /* hidden: Element Quantities, LCA Analysis, Cost Analysis */}
       <bim-button 
         id="toggle-gis"
         @click=${toggleGIS}
@@ -623,7 +595,7 @@ export const sidebarToggleToolbarTemplate: BUI.StatefullComponent<SidebarToggleT
         @click=${toggleIDS}
         icon="material-symbols:verified"
         tooltip-title="IDS Validation"
-        tooltip-text="Validate IFC model against RAVA 3.5 IDS specifications. Check compliance with Finnish building permit requirements."
+        tooltip-text="Load any IDS file and validate the IFC model against its specifications (That Open IDSSpecifications)."
         tooltip-position="right"
         style="width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
       ></bim-button>
@@ -631,8 +603,8 @@ export const sidebarToggleToolbarTemplate: BUI.StatefullComponent<SidebarToggleT
         id="toggle-bcf"
         @click=${toggleBCF}
         icon="mdi:file-document-multiple-outline"
-        tooltip-title="BCF (RAVA 3.5)"
-        tooltip-text="Generate BCF topics from RAVA validation failures, visualize them and download .bcfzip for use in any BIM collaboration software."
+        tooltip-title="BCF"
+        tooltip-text="Generate BCF topics from IDS validation failures, visualize them and download .bcfzip for use in any BIM collaboration software."
         tooltip-position="right"
         style="width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
       ></bim-button>

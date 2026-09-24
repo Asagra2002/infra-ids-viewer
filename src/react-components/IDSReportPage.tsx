@@ -31,7 +31,6 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 const USEFUL_LINKS = [
-  { label: "RAVA (Finnish building permit data)", href: "https://www.rava.fi/", icon: "open_in_new" },
   { label: "buildingSMART IDS", href: "https://technical.buildingsmart.org/standards/ids/", icon: "open_in_new" },
   { label: "BCF (BIM Collaboration Format)", href: "https://technical.buildingsmart.org/standards/bcf/", icon: "open_in_new" },
 ];
@@ -104,7 +103,7 @@ export function IDSReportPage(props: Props) {
     if (!reportData) return;
     const wb = XLSX.utils.book_new();
     const summary = [
-      ["RAVA 3.5 – Project validation checklist"],
+      ["IDS – Project validation checklist"],
       [],
       ["Model", reportData.modelName],
       ["Date", new Date(reportData.timestamp).toLocaleString()],
@@ -128,7 +127,7 @@ export function IDSReportPage(props: Props) {
     XLSX.utils.book_append_sheet(XLSX.utils.aoa_to_sheet(checklistRows), wb, "Checklist");
 
     const timestamp = new Date().toISOString().split("T")[0];
-    XLSX.writeFile(wb, `RAVA-Validation-Checklist-${timestamp}.xlsx`);
+    XLSX.writeFile(wb, `IDS-Validation-Checklist-${timestamp}.xlsx`);
   };
 
   const exportChecklistPDF = () => {
@@ -136,7 +135,7 @@ export function IDSReportPage(props: Props) {
     const doc = new jsPDF();
     const date = new Date(reportData.timestamp).toLocaleString();
     doc.setFontSize(14);
-    doc.text("RAVA 3.5 – Project validation checklist", 14, 20);
+    doc.text("IDS – Project validation checklist", 14, 20);
     doc.setFontSize(10);
     doc.text(`Model: ${reportData.modelName}`, 14, 28);
     doc.text(`Date: ${date}`, 14, 34);
@@ -155,7 +154,7 @@ export function IDSReportPage(props: Props) {
       y += 6;
     }
     const timestamp = new Date().toISOString().split("T")[0];
-    doc.save(`RAVA-Validation-Checklist-${timestamp}.pdf`);
+    doc.save(`IDS-Validation-Checklist-${timestamp}.pdf`);
   };
 
   const exportToJSON = () => {
@@ -165,7 +164,7 @@ export function IDSReportPage(props: Props) {
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `IDS-RAVA-Report-${new Date().toISOString().split('T')[0]}.json`;
+    link.download = `IDS-Report-${new Date().toISOString().split('T')[0]}.json`;
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -203,10 +202,11 @@ export function IDSReportPage(props: Props) {
         <div>
           <h2 style={{ display: "flex", alignItems: "center", gap: "8px", margin: 0, fontSize: "1.5rem" }}>
             <span className="material-icons-round">verified</span>
-            RAVA 3.5 Validation
+            IDS Validation
           </h2>
           <p style={{ margin: "0.5rem 0 0 0", color: "var(--text-2)", fontSize: "0.875rem" }}>
             {reportData.modelName} · {new Date(reportData.timestamp).toLocaleString()}
+            {(reportData as any).idsFileName ? ` · ${(reportData as any).idsFileName}` : ""}
           </p>
           <Router.Link to="/home" style={{ fontSize: "0.8rem", color: "#2196f3", textDecoration: "none", marginTop: "0.25rem", display: "inline-flex", alignItems: "center", gap: "4px" }}>
             <span className="material-icons-round" style={{ fontSize: "1rem" }}>arrow_back</span>
@@ -305,7 +305,7 @@ export function IDSReportPage(props: Props) {
               Fix issues in your authoring tool using BCF
             </div>
             <div style={{ fontSize: "0.875rem", color: "var(--text-2)", lineHeight: 1.5 }}>
-              The BCF file is the only technical document you need for corrections. In the viewer: run validation, then open the <strong>BCF (RAVA 3.5)</strong> panel, click <strong>Generate BCF from RAVA validation</strong>, and <strong>Download BCF for BIM tools</strong>. Open the .bcfzip in any BIM collaboration software (e.g. Archicad, Revit) to see each issue with viewpoints and fix them there.
+              The BCF file is the only technical document you need for corrections. In the viewer: run validation, then open the <strong>BCF</strong> panel, click <strong>Generate BCF from IDS validation</strong>, and <strong>Download BCF for BIM tools</strong>. Open the .bcfzip in any BIM collaboration software (e.g. Archicad, Revit) to see each issue with viewpoints and fix them there.
             </div>
           </div>
         )}
