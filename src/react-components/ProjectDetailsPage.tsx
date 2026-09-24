@@ -10,7 +10,8 @@ import { TodoData } from "../bim_components/TodoCreator/base-types";
 import { BCFPage } from "./BCFPage";
 
 const PROTECTED_PROJECT_IDS = [
-  "rVY8PWGeY7XWl7kQHYrY",
+  "rVY8PWGeY7XWl7kQHYrY", // Hämeenlinna Bridge SO201 (preloaded IFC)
+  "QvKlmWCe9jk6rQofY3VI", // Upload your own IFC
 ];
 
 interface Props {

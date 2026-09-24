@@ -9,10 +9,12 @@ IDS checker and BCF viewer with GIS, focused on BIM infrastructure models.
 - Firebase Firestore (project metadata)
 - Netlify static hosting
 
-## Preloaded model
+## Projects (Firestore)
 
-- Project document: `rVY8PWGeY7XWl7kQHYrY`
-- IFC: `/assets/IFC example/demo-bridge-so201-hameenlinna.ifc`
+- `rVY8PWGeY7XWl7kQHYrY` — Hämeenlinna Bridge SO201 (preloaded IFC)
+- `QvKlmWCe9jk6rQofY3VI` — upload your own IFC (no `ifcFilePath`)
+
+Preloaded path: `/assets/IFC example/demo-bridge-so201-hameenlinna.ifc`
 
 ## Local development
 

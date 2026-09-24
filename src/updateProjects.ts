@@ -13,9 +13,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Single preloaded project in infra-ids-viewer
+// Projects in infra-ids-viewer
 const PROJECT_IDS = {
   bridge: 'rVY8PWGeY7XWl7kQHYrY',
+  upload: 'QvKlmWCe9jk6rQofY3VI',
 };
 
 async function updateProjects() {
@@ -24,6 +25,9 @@ async function updateProjects() {
       ifcFilePath: '/assets/IFC example/demo-bridge-so201-hameenlinna.ifc'
     });
     console.log('Bridge project updated successfully');
+
+    // Upload project: no ifcFilePath (user loads their own IFC)
+    console.log('Upload project ID (no preload):', PROJECT_IDS.upload);
   } catch (error) {
     console.error('Error updating projects:', error);
   }
