@@ -206,18 +206,28 @@ export class FinnishOfficialDataService {
   /**
    * Obtiene datos de NLS WFS
    */
+  private getMmlApiKey(): string | undefined {
+    const key =
+      typeof import.meta !== "undefined" &&
+      (import.meta as any).env?.VITE_MAANMITTLAITOS_API_KEY;
+    return typeof key === "string" && key.length > 0 ? key : undefined;
+  }
+
   private async fetchNLSData(bbox: string): Promise<any> {
     try {
-      // Intentar diferentes endpoints de NLS
+      const apiKey = this.getMmlApiKey();
+      const keyQuery = apiKey ? `&api-key=${encodeURIComponent(apiKey)}` : "";
+
+      // Intentar diferentes endpoints de NLS (requieren api-key en producción)
       const endpoints = [
-        `${this.NLS_WFS_BASE}?service=WFS&version=2.0.0&request=GetFeature&typeNames=kiinteistot&bbox=${bbox}&maxFeatures=1&outputFormat=application/json`,
-        `${this.NLS_WFS_BASE}?service=WFS&version=1.1.0&request=GetFeature&typeName=kiinteistot&bbox=${bbox}&maxFeatures=1&outputFormat=application/json`,
-        `${this.NLS_WFS_BASE}?service=WFS&version=1.0.0&request=GetFeature&typeName=kiinteistot&bbox=${bbox}&maxFeatures=1&outputFormat=application/json`
+        `${this.NLS_WFS_BASE}?service=WFS&version=2.0.0&request=GetFeature&typeNames=kiinteistot&bbox=${bbox}&maxFeatures=1&outputFormat=application/json${keyQuery}`,
+        `${this.NLS_WFS_BASE}?service=WFS&version=1.1.0&request=GetFeature&typeName=kiinteistot&bbox=${bbox}&maxFeatures=1&outputFormat=application/json${keyQuery}`,
+        `${this.NLS_WFS_BASE}?service=WFS&version=1.0.0&request=GetFeature&typeName=kiinteistot&bbox=${bbox}&maxFeatures=1&outputFormat=application/json${keyQuery}`
       ];
       
       for (const url of endpoints) {
         try {
-          console.log('[FinnishOfficialDataService] Trying NLS endpoint:', url);
+          console.log('[FinnishOfficialDataService] Trying NLS endpoint:', url.replace(/api-key=[^&]+/i, "api-key=***"));
           
           const response = await fetch(url, {
             method: 'GET',
